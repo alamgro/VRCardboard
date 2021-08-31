@@ -6,31 +6,30 @@ public class ObjGenerator : MonoBehaviour
 {
     public GameObject objPrefab;
 
-    [SerializeField]
-    private float radio;
-    [SerializeField]
-    private float spawnRate; //Time to spawn an object
-    [SerializeField]
-    private Transform pivotPosition;
+    #region PRIVATE VARIABLES
+    [SerializeField] private float radio;
+    [SerializeField] private float initialSpawnRate; //Time to spawn an object
+    [SerializeField] private float minSpawnRate; //Time to spawn an object
+    [SerializeField] private float timeToSubstract; //Time to substrat to the spawnRate, this increases the difficulty
+    [SerializeField] private Transform pivotPosition;
+    
     private Collider spawnArea;
+    #endregion
 
     void Start()
     {
         spawnArea = GetComponent<Collider>();
         transform.position = new Vector3(transform.position.x, pivotPosition.position.y, transform.position.z); //Posicionarlo bien en Y
-        InvokeRepeating(nameof(SpawnClampedObject), 1f, spawnRate);
+        StartCoroutine(SpawnClampedObject(initialSpawnRate));
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            print("Objeto instanciado");
-            SpawnClampedObject();
-        }
+
     }
 
-    private void SpawnClampedObject()
+    //SE PUEDE OPTIMIZAR SI SOLO INSTANCÍO EN UNA UNIDAD  DE -1 A 1 Y LE SUMO LAS COORDENADAS DEL PIVOTE
+    private IEnumerator SpawnClampedObject(float _spawnRate)
     {
         Vector3 minCoords, maxCoords;
         minCoords = spawnArea.bounds.min;
@@ -47,6 +46,12 @@ public class ObjGenerator : MonoBehaviour
         allowedPos.z = transform.position.z;
 
         Instantiate(objPrefab, allowedPos , Quaternion.identity);
+
+        print(_spawnRate);
+        yield return new WaitForSecondsRealtime(_spawnRate);
+        //Call the coroutine again
+        AdjustDifficulty(ref _spawnRate, timeToSubstract);
+        StartCoroutine(SpawnClampedObject(_spawnRate));
     }
 
     private Vector3 ClampMagnitude(Vector3 _vectorToClamp, float minMagnitude)
@@ -56,4 +61,12 @@ public class ObjGenerator : MonoBehaviour
         return vecNormalized * minMagnitude;
     }
 
+    private void AdjustDifficulty(ref float _spawnRate, float _timeToSubstract)
+    {
+        //Check if the spawnRate reached the minimum rate
+        if (_spawnRate <= minSpawnRate)
+            return;
+
+        _spawnRate -= _timeToSubstract;
+    }
 }
