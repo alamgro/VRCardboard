@@ -31,6 +31,7 @@ public class ObjGenerator : MonoBehaviour
     //SE PUEDE OPTIMIZAR SI SOLO INSTANCÍO EN UNA UNIDAD  DE -1 A 1 Y LE SUMO LAS COORDENADAS DEL PIVOTE
     private IEnumerator SpawnClampedObject(float _spawnRate)
     {
+        yield return new WaitForSecondsRealtime(_spawnRate);
         Vector3 minCoords, maxCoords;
         minCoords = spawnArea.bounds.min;
         maxCoords = spawnArea.bounds.max;
@@ -48,7 +49,6 @@ public class ObjGenerator : MonoBehaviour
         Instantiate(objPrefab, allowedPos , Quaternion.identity);
 
         print(_spawnRate);
-        yield return new WaitForSecondsRealtime(_spawnRate);
         //Call the coroutine again
         AdjustDifficulty(ref _spawnRate, timeToSubstract);
         StartCoroutine(SpawnClampedObject(_spawnRate));

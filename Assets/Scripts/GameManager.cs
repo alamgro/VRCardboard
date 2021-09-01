@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region SINGLETON MANAGER
+    public static GameManager Manager { get { return _instance; } }
+
+    private static GameManager _instance;
+    #endregion
+
+    [SerializeField] private float obstacleSpeed;
+    [SerializeField] private float rewardSpeed;
+
+    void Awake()
     {
-        
+        _instance = this;
     }
 
     // Update is called once per frame
@@ -15,4 +23,6 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    pro
 }
