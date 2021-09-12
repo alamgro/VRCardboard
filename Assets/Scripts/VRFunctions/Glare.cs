@@ -9,8 +9,6 @@ public class Glare : MonoBehaviour
     float timer;
     bool canInteract;
 
-
-    // Update is called once per frame
     void Update()
     {
         TimerUpdate();
@@ -19,7 +17,7 @@ public class Glare : MonoBehaviour
     public void TimeEnter()
     {
         canInteract = true;
-        pointer.GetComponent<MeshRenderer>().material.color = Color.red;
+        pointer.GetComponent<MeshRenderer>().material.color = Color.green;
     }
 
     void TimerUpdate()
@@ -32,7 +30,8 @@ public class Glare : MonoBehaviour
             if(timer >= timeToWait)
             {
                 TimerExit();
-                gameObject.SetActive(false);
+                GameManager.Manager.ResetGame();
+                //gameObject.SetActive(false);
             }
         }
     }

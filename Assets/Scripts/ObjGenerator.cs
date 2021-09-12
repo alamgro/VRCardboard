@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ObjGenerator : MonoBehaviour
 {
-    public GameObject objPrefab;
+    public GameObject demonPrefab;
+    public GameObject soulPrefab;
 
     #region PRIVATE VARIABLES
     [SerializeField] private float radio;
@@ -23,11 +24,6 @@ public class ObjGenerator : MonoBehaviour
         StartCoroutine(SpawnClampedObject(initialSpawnRate));
     }
 
-    void Update()
-    {
-
-    }
-
     //SE PUEDE OPTIMIZAR SI SOLO INSTANCÍO EN UNA UNIDAD  DE -1 A 1 Y LE SUMO LAS COORDENADAS DEL PIVOTE
     private IEnumerator SpawnClampedObject(float _spawnRate)
     {
@@ -35,7 +31,7 @@ public class ObjGenerator : MonoBehaviour
         Vector3 minCoords, maxCoords;
         minCoords = spawnArea.bounds.min;
         maxCoords = spawnArea.bounds.max;
-
+         
         float randX, randY;
         randX = Random.Range(minCoords.x, maxCoords.x);
         randY = Random.Range(minCoords.y, maxCoords.y);
@@ -46,13 +42,25 @@ public class ObjGenerator : MonoBehaviour
         allowedPos.y += transform.position.y;
         allowedPos.z = transform.position.z;
 
-        Instantiate(objPrefab, allowedPos , Quaternion.identity);
+        #region SPAWN RANDOM SOUL OR DEMON
+        if (Random.Range(0, 4) == 0)
+        {
+            //Spawn soul
+            Instantiate(soulPrefab, allowedPos, soulPrefab.transform.rotation);
+        }
+        else
+        {
+            //Spawn demon
+            Instantiate(demonPrefab, allowedPos, demonPrefab.transform.rotation);
+        }
+        #endregion
 
-        print(_spawnRate);
+        //Debug.Log(_spawnRate, gameObject);
         //Call the coroutine again
         AdjustDifficulty(ref _spawnRate, timeToSubstract);
         StartCoroutine(SpawnClampedObject(_spawnRate));
     }
+
 
     private Vector3 ClampMagnitude(Vector3 _vectorToClamp, float minMagnitude)
     {

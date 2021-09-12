@@ -11,19 +11,11 @@ public class ObjMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        speed = GameManager.Manager.obstacleSpeed;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = Vector3.back * speed;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Barrier"))
-        {
-            Destroy(gameObject);
-        }
-    }
-    
 }

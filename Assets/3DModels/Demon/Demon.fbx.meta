@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: 2a6522c2ee79fa545b063bcf9ec93a5e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: CABEZA
+    100002: Cubo
+    100004: "C\xE1mara"
+    100006: //RootNode
+    100008: Esfera
+    100010: "Esfera geod\xE9sica"
+    100012: Sol
+    100014: "\xC1rea"
+    100016: "\xC1rea.001"
+    100018: "\xC1rea.002"
+    400000: CABEZA
+    400002: Cubo
+    400004: "C\xE1mara"
+    400006: //RootNode
+    400008: Esfera
+    400010: "Esfera geod\xE9sica"
+    400012: Sol
+    400014: "\xC1rea"
+    400016: "\xC1rea.001"
+    400018: "\xC1rea.002"
+    2000000: "C\xE1mara"
+    2100000: Material
+    2100002: ojos
+    2100004: DIENTES
+    2100006: MAGMA
+    2300000: CABEZA
+    2300002: Cubo
+    2300004: Esfera
+    2300006: "Esfera geod\xE9sica"
+    3300000: CABEZA
+    3300002: Cubo
+    3300004: Esfera
+    3300006: "Esfera geod\xE9sica"
+    4300000: CABEZA
+    4300002: Esfera
+    4300004: Cubo
+    4300006: "Esfera geod\xE9sica"
+    10800000: Sol
+    10800002: "\xC1rea"
+    10800004: "\xC1rea.001"
+    10800006: "\xC1rea.002"
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

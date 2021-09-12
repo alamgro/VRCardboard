@@ -52,5 +52,5 @@ public class BarrierControl : MonoBehaviour
         transform.Rotate(Vector3.forward * finalSpeed * Time.deltaTime);
     }
 
-    
+
 }
