@@ -11,7 +11,7 @@ public class ObjMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        speed = GameManager.Manager.obstacleSpeed;
+        speed = GameManager.Manager.globalSpeed;
     }
 
     void FixedUpdate()

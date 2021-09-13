@@ -13,14 +13,16 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public float obstacleSpeed;
+    [HideInInspector]
+    public float globalSpeed;
 
-    [SerializeField] private float rewardSpeed;
     [SerializeField] private TextMeshProUGUI scoreUI;
     [SerializeField] private TextMeshProUGUI highScoreUI;
     [SerializeField] private GameObject[] heartsHP;
     [SerializeField] private GameObject heartParticles;
     [SerializeField] private int health;
+    [SerializeField] private float minSpeed;
+    [SerializeField] private float maxSpeed;
     private readonly int maxhealth = 3;
     private int score = 0;
     private int highScore;
@@ -35,11 +37,13 @@ public class GameManager : MonoBehaviour
     {
         highScore = PlayerPrefs.GetInt("highScore", 0);
         health = maxhealth;
+        globalSpeed = minSpeed;
 
         highScoreUI.text = string.Empty + highScore.ToString("0000"); //Modificar UI
 
         SetUpHeartsHP(maxhealth); //Prepare 3D heart models
 
+        InvokeRepeating(nameof(IncreaseSpeed), 5f, 4f);
     }
 
     public void AddToScore(int _amount)
@@ -96,5 +100,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    void IncreaseSpeed()
+    {
+        if (globalSpeed >= maxSpeed)
+            return;
+
+        globalSpeed += 0.2f;
+    }
 
 }
