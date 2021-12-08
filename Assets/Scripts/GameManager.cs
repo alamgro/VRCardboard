@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         SetUpHeartsHP(maxhealth); //Prepare 3D heart models
 
-        InvokeRepeating(nameof(IncreaseSpeed), 5f, 4f);
+        InvokeRepeating(nameof(IncreaseSpeed), 5f, 3f);
     }
 
     public void AddToScore(int _amount)

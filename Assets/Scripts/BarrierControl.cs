@@ -31,6 +31,8 @@ public class BarrierControl : MonoBehaviour
             RotateRight();
         }
 
+        //print(finalSpeed);
+
         ///Debug
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -42,6 +44,7 @@ public class BarrierControl : MonoBehaviour
     {
         //Calcular velocidad final dependiendo de qué tan girada esté la cámara
         finalSpeed = rotationSpeed + (Mathf.DeltaAngle(cam.eulerAngles.z, -rotationThreshold) * speedMultiplier);
+        finalSpeed = Mathf.Clamp(finalSpeed, 0f, 800f);
         transform.Rotate(Vector3.back * finalSpeed * Time.deltaTime);
     }
 
@@ -49,6 +52,7 @@ public class BarrierControl : MonoBehaviour
     {
         //Calcular velocidad final dependiendo de qué tan girada esté la cámara
         finalSpeed = rotationSpeed + (Mathf.DeltaAngle(rotationThreshold, cam.eulerAngles.z) * speedMultiplier);
+        finalSpeed = Mathf.Clamp(finalSpeed, 0f, 800f);
         transform.Rotate(Vector3.forward * finalSpeed * Time.deltaTime);
     }
 

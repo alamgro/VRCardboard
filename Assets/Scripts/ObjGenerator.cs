@@ -42,18 +42,7 @@ public class ObjGenerator : MonoBehaviour
         allowedPos.y += transform.position.y;
         allowedPos.z = transform.position.z;
 
-        #region SPAWN RANDOM SOUL OR DEMON
-        if (Random.Range(0, 4) == 0)
-        {
-            //Spawn soul
-            Instantiate(soulPrefab, allowedPos, soulPrefab.transform.rotation);
-        }
-        else
-        {
-            //Spawn demon
-            Instantiate(demonPrefab, allowedPos, demonPrefab.transform.rotation);
-        }
-        #endregion
+        Spawn(allowedPos);
 
         //Debug.Log(_spawnRate, gameObject);
         //Call the coroutine again
@@ -61,6 +50,49 @@ public class ObjGenerator : MonoBehaviour
         StartCoroutine(SpawnClampedObject(_spawnRate));
     }
 
+    private void Spawn(Vector3 _allowedPos)
+    {
+        #region SPAWN RANDOM SOUL OR DEMON
+        if (Random.Range(0, 4) == 0)
+        {
+            //Spawn soul
+            Instantiate(soulPrefab, _allowedPos, soulPrefab.transform.rotation);
+
+            //Ramdonly decide if it spawns something else (75 % chances)
+            if(Random.Range(0, 4) != 0)
+            {
+                Vector3 opositePos = (transform.position - _allowedPos).normalized * 6f;
+                opositePos = ClampMagnitude(opositePos, radio);
+                opositePos.y += transform.position.y;
+                opositePos.z = transform.position.z;
+
+                //25% chances of spawn another soul
+                if (Random.Range(0, 4) == 0)
+                    Instantiate(soulPrefab, opositePos, soulPrefab.transform.rotation);
+                else
+                    Instantiate(demonPrefab, opositePos, demonPrefab.transform.rotation);
+            }
+        }
+        else
+        {
+            //Spawn demon
+            Instantiate(demonPrefab, _allowedPos, demonPrefab.transform.rotation);
+
+            //Ramdonly decide if it spawns a soul (75 % chances)
+            if (Random.Range(0, 4) != 0)
+            {
+                Vector3 opositePos = (transform.position - _allowedPos).normalized * 6f;
+                opositePos = ClampMagnitude(opositePos, radio);
+                opositePos.y += transform.position.y;
+                opositePos.z = transform.position.z;
+
+                //33% chances of spawn another soul
+                if (Random.Range(0, 3) == 0)
+                    Instantiate(soulPrefab, opositePos, soulPrefab.transform.rotation);
+            }
+        }
+        #endregion
+    }
 
     private Vector3 ClampMagnitude(Vector3 _vectorToClamp, float minMagnitude)
     {
